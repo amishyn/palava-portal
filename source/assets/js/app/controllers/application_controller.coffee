@@ -1,6 +1,6 @@
 #= require app/app
 
-@palavaPortal.controller('ApplicationController', ['$scope', '$log', '$routeParams', '$location', ($scope, $log, $routeParams, $location) ->
+@palavaPortal.controller('ApplicationController', ['$scope', '$log', '$routeParams', '$location', '$translate', ($scope, $log, $routeParams, $location, $translate) ->
 
   ## private functions ##
   setupLogger = ->
@@ -23,6 +23,9 @@
     setTimeout ->
       $('.modal').modal 'hide'
     , 1
+
+  $scope.changeLanguage = (key)->
+    $translate.use(key)
 
   ## init ##
   setupLogger()

@@ -1,4 +1,4 @@
-@palavaPortal = angular.module('palava-portal', ['$strap.directives'])
+@palavaPortal = angular.module('palava-portal', ['$strap.directives', 'pascalprecht.translate'])
 <% require 'digest/sha2' %>
 plvAssetVersion = "<%= system('git rev-parse HEAD > /dev/null') ? Digest::SHA512.hexdigest(rand().to_s) : Digest::SHA512.hexdigest(`git rev-parse HEAD`)  %>"
 
@@ -14,6 +14,15 @@ plvAssetVersion = "<%= system('git rev-parse HEAD > /dev/null') ? Digest::SHA512
     when('/:roomId',          { templateUrl: '/html/conference.html?'    + plvAssetVersion, controller: 'ConferenceController' }).
     otherwise({ redirectTo: '/' })
   $locationProvider.html5Mode true
+]
+@palavaPortal.config ['$translateProvider', ($translateProvider) -> 
+  $translateProvider.translations 'en',
+    TITLE: 'Hello'
+    FOO: 'foobar'
+  $translateProvider.translations 'de',
+    TITLE: 'Hallo'
+    FOO: 'barfoo'
+  $translateProvider.preferredLanguage 'en'
 ]
 
 @palavaPortal.run ['$location', '$rootScope', '$routeParams', ($location, $rootScope, $routeParams) ->

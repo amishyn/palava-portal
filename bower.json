@@ -20,6 +20,9 @@
     "angular": "~1.0.8",
     "bootstrap": "2",
     "jquery": "~2.0.3",
-    "eventEmitter": "~4.2.4"
+    "eventEmitter": "~4.2.4",
+    "angular-animate": "~1.2.14",
+    "angular-route": "~1.2.14",
+    "angular-translate": "~2.5.2"
   }
 }
