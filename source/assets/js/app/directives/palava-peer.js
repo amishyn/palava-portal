@@ -3,6 +3,10 @@ var templateString = '\
   <span ng-show="peer.isMuted()">&#x1f508;</span>\
   <span ng-show="!peer.isMuted()">&#x1f50a;</span>\
 </a>\
+<a ng-click="kickOut()" href="javascript:void(0)">\
+  kickOut\
+</a>\
+\
 <span ng-show="!peer.hasAudio() && (!peer.isLocal() || !rtc.userMedia.config.audio)" class="plv-video-mute">&#x1f507;</span>\
 \
 <span ng-show="!peer.isLocal()" class="plv-video-heading">\
@@ -30,6 +34,9 @@ angular.module('palava-portal').directive('palavaPeer', [function(){
         $scope.peer.toggleMute();
         $elem.find('.plv-video-mute').attr('data-peer-muted', $scope.peer.isMuted());
         $scope.applyMuteStatuses();
+      }
+      $scope.kickOut = function() {
+        $scope.peer.room.kickOut($scope.peer.id);
       }
 
       // initial audio activation chrome bug
